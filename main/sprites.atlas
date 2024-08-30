@@ -1,0 +1,134 @@
+animations {
+  id: "player-down"
+  images {
+    image: "/assets/units/infantry/down/1.png"
+  }
+  images {
+    image: "/assets/units/infantry/down/2.png"
+  }
+  images {
+    image: "/assets/units/infantry/down/3.png"
+  }
+  images {
+    image: "/assets/units/infantry/down/4.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "player-up"
+  images {
+    image: "/assets/units/infantry/up/1.png"
+  }
+  images {
+    image: "/assets/units/infantry/up/2.png"
+  }
+  images {
+    image: "/assets/units/infantry/up/3.png"
+  }
+  images {
+    image: "/assets/units/infantry/up/4.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "player-left"
+  images {
+    image: "/assets/units/infantry/side/1.png"
+  }
+  images {
+    image: "/assets/units/infantry/side/2.png"
+  }
+  images {
+    image: "/assets/units/infantry/side/3.png"
+  }
+  images {
+    image: "/assets/units/infantry/side/4.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+  flip_horizontal: 1
+}
+animations {
+  id: "player-right"
+  images {
+    image: "/assets/units/infantry/side/1.png"
+  }
+  images {
+    image: "/assets/units/infantry/side/2.png"
+  }
+  images {
+    image: "/assets/units/infantry/side/3.png"
+  }
+  images {
+    image: "/assets/units/infantry/side/4.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "rocket"
+  images {
+    image: "/assets/buildings/turret-rocket/1.png"
+  }
+  images {
+    image: "/assets/buildings/turret-rocket/2.png"
+  }
+  images {
+    image: "/assets/buildings/turret-rocket/3.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 12
+  flip_horizontal: 1
+}
+animations {
+  id: "explosion"
+  images {
+    image: "/assets/fx/explosion/1.png"
+  }
+  images {
+    image: "/assets/fx/explosion/2.png"
+  }
+  images {
+    image: "/assets/fx/explosion/3.png"
+  }
+  images {
+    image: "/assets/fx/explosion/4.png"
+  }
+  images {
+    image: "/assets/fx/explosion/5.png"
+  }
+  images {
+    image: "/assets/fx/explosion/6.png"
+  }
+  images {
+    image: "/assets/fx/explosion/7.png"
+  }
+  images {
+    image: "/assets/fx/explosion/8.png"
+  }
+  images {
+    image: "/assets/fx/explosion/9.png"
+  }
+  fps: 10
+}
+animations {
+  id: "tank-down"
+  images {
+    image: "/assets/units/tank/down/1.png"
+  }
+  images {
+    image: "/assets/units/tank/down/2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "deseczka"
+  images {
+    image: "/assets/customs/tool-1.png"
+  }
+  fps: 60
+}
+extrude_borders: 2
