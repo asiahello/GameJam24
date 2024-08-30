@@ -1,4 +1,5 @@
 go.property("dir", vmath.vector3())
+go.property("speed", 50)
 
 local UP = vmath.vector3(0, 1, 0)
 local RAD_180 = math.pi
@@ -20,19 +21,11 @@ local function distance_to_player()
 end
 
 function init(self)
-	self.speed = 50
+	-- self.speed = 50
 	self.life = 10
 	self.rotation = 0
 	self.range = 200
 	self.follow = true
-
-	local pos = go.get_position()
-	print(pos)
-
-	-- initial throw
-	local pos = go.get_position("/player#sprite")
-	self.target = vmath.vector3(self.range * self.dir.x, self.range * self.dir.y, 0) + pos
-	go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, self.target, go.EASING_LINEAR, 1, 0, follow_player)
 end
 
 function final(self)
