@@ -9,13 +9,13 @@ nodes {
     y: 670.0
   }
   size {
-    x: 200.0
-    y: 100.0
+    x: 150.0
+    y: 25.0
   }
   type: TYPE_TEXT
-  text: "\"SCORE:0\""
+  text: "\"YOUR AGE: 0\""
   font: "text"
-  id: "score"
+  id: "age"
   pivot: PIVOT_W
   inherit_alpha: true
 }

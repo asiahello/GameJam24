@@ -1,24 +1,27 @@
+-- TODO what is the difference in this declarations?
+-- local score_node = gui.get_node("score")
+-- go.property("score_node", gui.get_node("score"))
+
+local GET_OLDER = hash("get_older")
+
 function init(self)
-	self.score = 0
+	self.age = 0
+	self.score_node = gui.get_node("age")
 end
 
-function final(self)
-	-- Add finalization code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
-end
-
-function update(self, dt)
-	-- Add update code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
+local function scale_down(self, node)
+	local s = 1.0
+	gui.animate(node, gui.PROP_SCALE, vmath.vector4(s, s, s, 0), gui.EASING_OUT, 0.05)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash("add_score") then
-		self.score = self.score + message.score
-		local score_node = gui.get_node("score")
-		gui.set_text(score_node, "SCORE: " .. self.score)
+	if message_id == GET_OLDER then
+		self.age = self.age + message.age
+		gui.set_text(self.score_node, "YOUR AGE: " .. self.age)
+
+		local s = 1.2
+		gui.animate(self.score_node, gui.PROP_SCALE, vmath.vector4(s, s, s, 0), gui.EASING_OUT, 0.1, 0.0, scale_down)
+		
 	end 
 end
 
@@ -31,11 +34,5 @@ function on_input(self, action_id, action)
 	-- All mapped input bindings will be received. Mouse and touch input will
 	-- be received regardless of where on the screen it happened.
 	-- Learn more: https://defold.com/manuals/input/
-	-- Remove this function if not needed
-end
-
-function on_reload(self)
-	-- Add reload-handling code here
-	-- Learn more: https://defold.com/manuals/hot-reload/
 	-- Remove this function if not needed
 end

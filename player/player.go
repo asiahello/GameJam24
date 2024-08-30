@@ -1,6 +1,6 @@
 components {
-  id: "trauma"
-  component: "/trauma/red.script"
+  id: "player"
+  component: "/player/player.script"
 }
 embedded_components {
   id: "collisionobject"
@@ -9,8 +9,8 @@ embedded_components {
   "mass: 0.0\n"
   "friction: 0.1\n"
   "restitution: 0.5\n"
-  "group: \"traumas\"\n"
-  "mask: \"player\"\n"
+  "group: \"player\"\n"
+  "mask: \"traumas\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"
@@ -28,10 +28,20 @@ embedded_components {
   ""
 }
 embedded_components {
+  id: "rocket_factory"
+  type: "factory"
+  data: "prototype: \"/player/rocket.go\"\n"
+  ""
+}
+embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "default_animation: \"red\"\n"
+  data: "default_animation: \"player-down\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
+  "size {\n"
+  "  x: 22.0\n"
+  "  y: 22.0\n"
+  "}\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
   "  texture: \"/main/sprites.atlas\"\n"
