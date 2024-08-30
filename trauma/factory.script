@@ -3,27 +3,43 @@ local DISPLAY_HEIGHT = 720
 
 local OFFSET = 64
 
+local frequency = 0.5
+local bonus_prob = 0.2
+
 local function random_position()
 	local x = math.random(OFFSET, DISPLAY_WIDTH - 2 * OFFSET)
 	local y = math.random(OFFSET, DISPLAY_HEIGHT - 2 * OFFSET)
 	return vmath.vector3(x, y, 1.0)
 end
 
-local function spawn_enemy()
-	return factory.create("/trauma#trauma_factory", random_position(), nil, nil, vmath.vector3(1))
+local function spawn_trauma(factory_name)
+	return factory.create(factory_name, random_position(), nil, nil, vmath.vector3(1))
 end
 
 function init(self)
 	math.randomseed(os.time())
-	self.enemies = {}
-	for i = 1, 10 do
-		table.insert(self.enemies, spawn_enemy())
-	end
-	msg.post(".", "acquire_input_focus")
+	self.timer = 1/frequency
+	self.traumas = {}
 end
 
 function final(self)
-	msg.post(".", "release_input_focus")
+	-- Add finalization code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function update(self, dt)
+	self.timer = self.timer - dt
+	if self.timer <= 0 then
+		self.timer = 1/frequency
+		
+		local factory_name = "#red_factory"
+		if math.random() < bonus_prob then
+			factory_name = "#blue_factory"
+		end
+		
+		table.insert(self.traumas, spawn_trauma(factory_name))
+	end
 end
 
 function on_message(self, message_id, message, sender)
