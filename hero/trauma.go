@@ -1,6 +1,6 @@
 components {
-  id: "deseczka"
-  component: "/hero/deseczka.script"
+  id: "trauma"
+  component: "/hero/trauma.script"
 }
 embedded_components {
   id: "collisionobject"

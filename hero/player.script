@@ -1,18 +1,26 @@
+local UP = hash("key_up")
+local DOWN = hash("key_down")
+local LEFT = hash("key_left")
+local RIGHT = hash("key_right")
+
 function init(self)
 	msg.post(".", "acquire_input_focus")
+
+	self.actions = {}
 
 	self.moving = false
 	self.firing = false
 
 	self.input = vmath.vector3()
 	self.dir = vmath.vector3(0, 1, 0)
-	self.speed = 50 
+	self.speed = 150 
 
 	self.current_animation = nil
 end
 
 function final(self)
 	msg.post(".", "release_input_focus")
+	
 end
 
 local function update_animation(self)
@@ -51,11 +59,8 @@ function update(self, dt)
 		local angle = math.atan2(self.dir.y, self.dir.x)
 		local rot = vmath.quat_rotation_z(angle) 
 		local props = { dir = self.dir }
-		-- factory.create("#rocket_factory", nil, rot, props)
-		factory.create("#deseczka_factory", nil, rot, props)
+		factory.create("#rocket_factory", nil, rot, props)
 	end
-
-	update_animation(self)
 
 	self.input.x = 0
 	self.input.y = 0
@@ -70,13 +75,13 @@ function on_message(self, message_id, message, sender)
 end
 
 function on_input(self, action_id, action)
-	if action_id == hash("key_up") then
+	if action_id == UP then
 		self.input.y = 1
-	elseif action_id == hash("key_down") then
+	elseif action_id == DOWN then
 		self.input.y = -1
-	elseif action_id == hash("key_left") then
+	elseif action_id == LEFT then
 		self.input.x = -1
-	elseif action_id == hash("key_right") then
+	elseif action_id == RIGHT then
 		self.input.x = 1
 	elseif action_id == hash("key_space") and action.released then
 		self.firing = true
