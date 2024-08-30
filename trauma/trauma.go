@@ -1,17 +1,6 @@
 components {
-  id: "rocket"
-  component: "/hero/rocket.script"
-}
-embedded_components {
-  id: "sprite"
-  type: "sprite"
-  data: "default_animation: \"rocket\"\n"
-  "material: \"/builtins/materials/sprite.material\"\n"
-  "textures {\n"
-  "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/main/sprites.atlas\"\n"
-  "}\n"
-  ""
+  id: "trauma"
+  component: "/trauma/trauma.script"
 }
 embedded_components {
   id: "collisionobject"
@@ -32,9 +21,20 @@ embedded_components {
   "    index: 0\n"
   "    count: 3\n"
   "  }\n"
-  "  data: 7.5\n"
-  "  data: 2.5\n"
   "  data: 10.0\n"
+  "  data: 10.0\n"
+  "  data: 10.0\n"
+  "}\n"
+  ""
+}
+embedded_components {
+  id: "sprite"
+  type: "sprite"
+  data: "default_animation: \"deseczka\"\n"
+  "material: \"/builtins/materials/sprite.material\"\n"
+  "textures {\n"
+  "  sampler: \"texture_sampler\"\n"
+  "  texture: \"/main/sprites.atlas\"\n"
   "}\n"
   ""
 }

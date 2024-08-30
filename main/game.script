@@ -10,7 +10,7 @@ local function random_position()
 end
 
 local function spawn_enemy()
-	return factory.create("#trauma_factory", random_position(), nil, nil, vmath.vector3(1))
+	return factory.create("/trauma#trauma_factory", random_position(), nil, nil, vmath.vector3(1))
 end
 
 function init(self)
