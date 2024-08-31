@@ -27,9 +27,9 @@ function on_message(self, message_id, message, sender)
 			self.capacity = self.capacity - 1
 			message_type = "catched_you"		
 		-- TODO to mi na razie psuje oscylacje
-		-- else
-		-- 	self.capacity = self.capacity + 1
-		-- 	message_type = "you_are_free"	
+		else
+			self.capacity = self.capacity + 1
+			message_type = "you_are_free"	
 		end
 
 		label.set_text("#label", "Capacity: " .. self.capacity)
