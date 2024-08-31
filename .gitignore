@@ -7,6 +7,6 @@ Thumbs.db
 *.pyc
 .project
 .cproject
-# *.afphoto~lock~
+*.afphoto~lock~
 builtins
 .idea
