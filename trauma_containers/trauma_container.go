@@ -1,5 +1,5 @@
 components {
-  id: "therapist"
+  id: "trauma_container"
   component: "/trauma_containers/trauma_container.script"
 }
 embedded_components {

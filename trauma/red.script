@@ -20,12 +20,39 @@ local function distance_to_player()
 	return vmath.length(self_pos, target_pos)
 end
 
+local function follow_player_movement(self, dt)
+	local current_angle = math.rad(go.get(".", "euler.z"))
+	local target_angle = angle_to_player()
+	-- rotate towards the target angle
+	-- spherical interpolation towards the target rotation
+	-- tweak rotation speed to turn faster
+	local current_rotation = go.get_rotation()
+	local target_rotation = vmath.quat_rotation_z(target_angle)
+	local rotation_speed = 4 -- tweak this!
+	local rotation = vmath.slerp(rotation_speed * dt, current_rotation, target_rotation)
+	go.set_rotation(rotation)
+
+	-- move in current direction
+	local direction = vmath.rotate(rotation, UP)
+	local distance = self.speed * dt
+	go.set_position(go.get_position() + direction * distance)
+end
+
+
 function init(self)
 	-- self.speed = 50
 	self.life = 10
 	self.rotation = 0
 	self.range = 200
+	
 	self.follow = true
+	self.catched = false
+
+	self.catched_by = nil
+	self.offset_catched = vmath.vector3(50,0,0)
+
+	self.angular_speed = 360/2
+
 end
 
 function final(self)
@@ -42,30 +69,20 @@ local function explode(self)
 	sprite.play_flipbook("#sprite", "explosion")
 end
 
-
 function update(self, dt)
 
 	if self.follow then
-		local current_angle = math.rad(go.get(".", "euler.z"))
-		local target_angle = angle_to_player()
-		-- rotate towards the target angle
-		-- spherical interpolation towards the target rotation
-		-- tweak rotation speed to turn faster
-		local current_rotation = go.get_rotation()
-		local target_rotation = vmath.quat_rotation_z(target_angle)
-		local rotation_speed = 4 -- tweak this!
-		local rotation = vmath.slerp(rotation_speed * dt, current_rotation, target_rotation)
-		go.set_rotation(rotation)
+		follow_player_movement(self, dt)
 
-		-- move in current direction
-		local direction = vmath.rotate(rotation, UP)
-		local distance = self.speed * dt
-		go.set_position(go.get_position() + direction * distance)
+	elseif self.catched then
+		local center = go.get_position(self.catched_by)
+		
+		local r = vmath.quat_rotation_z(math.rad(self.angular_speed) * dt)
+		
+		self.offset_catched = vmath.rotate(r, self.offset_catched)
+		go.set_position(center + self.offset_catched)	
+
 	end
-
-
-
-
 
 	self.life = self.life - dt
 	if self.life < 0 then
@@ -75,12 +92,24 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("animation_done") then
-		go.delete()
-		print("shit")
+		go.delete() -- usuwa okruchy
+		print("animation done")
 	elseif message_id == hash("collision_response") then
 		-- explode(self)
 		-- go.delete(message.other_id)
 		msg.post("/gui#ui", "get_older", { age = 1 })
+	elseif message_id == hash("catched_you") then
+		self.follow = false
+		self.catched = true
+		self.catched_by = sender
+		
+		go.animate(".", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 2)
+		self.offset_catched = vmath.vector3(50,0,0)
+
+	elseif message_id == hash("you_are_free") then
+		go.cancel_animations(".")
+		self.follow = true
+		self.catched = false
 	end
 end
 
