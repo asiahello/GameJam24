@@ -3,7 +3,7 @@ components {
   component: "/trauma/red.script"
 }
 embedded_components {
-  id: "collisionobject"
+  id: "red_collisionobject"
   type: "collisionobject"
   data: "type: COLLISION_OBJECT_TYPE_DYNAMIC\n"
   "mass: 1.0\n"
