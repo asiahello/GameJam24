@@ -11,6 +11,8 @@ function init(self)
 
 	self.moving = false
 	self.firing = false
+	self.obstacle_collision = false
+	self.collision_bounce = false
 
 	self.input = vmath.vector3()
 	self.dir = vmath.vector3(0, 1, 0)
@@ -47,7 +49,41 @@ local function update_animation(self)
 	end
 end
 
+local function bounced(self)
+	self.collision_bounce = false
+end
+
+
 function update(self, dt)
+	if self.obstacle_collision then
+		print("Collision with obstacle detected")
+
+		-- Determine the direction of the collision
+		local pos = go.get_position()
+
+		-- Calculate the bounce direction based on the collision
+		local bounce_distance = 15
+		local bounce_dir = vmath.vector3(0, 0, 0)
+
+		if math.abs(self.dir.x) > math.abs(self.dir.y) then
+			-- Horizontal collision: Bounce in the opposite X direction
+			bounce_dir.x = -self.dir.x * bounce_distance
+		else
+			-- Vertical collision: Bounce in the opposite Y direction
+			bounce_dir.y = -self.dir.y * bounce_distance
+		end
+
+		-- Calculate the final position after the bounce
+		local final_pos = pos + bounce_dir
+
+		-- Animate the player to the final position with a bounce effect
+		go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, final_pos, go.EASING_OUTBOUNCE, 0.2, 0, bounced)
+
+		-- Prevent further movement
+		self.moving = false
+		self.obstacle_collision = false
+	end
+
 	if self.moving then
 		update_animation(self)
 		local pos = go.get_position()
@@ -67,12 +103,15 @@ function update(self, dt)
 	self.input.y = 0
 	self.moving = false
 	self.firing = false
+	self.obstacle_collision = false
 end
 
 function on_message(self, message_id, message, sender)
-	-- Add message-handling code here
-	-- Learn more: https://defold.com/manuals/message-passing/
-	-- Remove this function if not needed
+	if message_id == hash("contact_point_response") then
+		if message.group == hash("obstacles") then
+			self.obstacle_collision = true
+		end
+	end
 end
 
 function on_input(self, action_id, action)
