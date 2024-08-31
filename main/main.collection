@@ -52,15 +52,6 @@ instances {
     z: 1.0
   }
 }
-instances {
-  id: "therapist"
-  prototype: "/trauma/therapist.go"
-  position {
-    x: 812.0
-    y: 351.0
-    z: 1.0
-  }
-}
 scale_along_z: 0
 embedded_instances {
   id: "game"
@@ -148,6 +139,20 @@ embedded_instances {
   data: "components {\n"
   "  id: \"ui\"\n"
   "  component: \"/gui/ui.gui\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "trauma_container"
+  data: "components {\n"
+  "  id: \"factory\"\n"
+  "  component: \"/trauma_containers/factory.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"trauma_container_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/trauma_containers/therapist.go\\\"\\n"
+  "\"\n"
   "}\n"
   ""
 }

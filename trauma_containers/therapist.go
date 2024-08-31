@@ -1,6 +1,6 @@
 components {
   id: "therapist"
-  component: "/trauma/therapist.script"
+  component: "/trauma_containers/therapist.script"
 }
 embedded_components {
   id: "sprite"
