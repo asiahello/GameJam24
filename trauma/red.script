@@ -98,13 +98,12 @@ function on_message(self, message_id, message, sender)
 		-- explode(self)
 		-- go.delete(message.other_id)
 		msg.post("/gui#ui", "get_older", { age = 1 })
-	elseif message_id == hash("catched_you") then
+	elseif message_id == hash("catched_you") and not self.catched then
 		self.follow = false
 		self.catched = true
 		self.catched_by = sender
-		
-		go.animate(".", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 2)
-		self.offset_catched = vmath.vector3(50,0,0)
+		go.animate(".", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 2)		
+		self.offset_catched = go.get_position() - go.get_position(self.catched_by)
 
 	elseif message_id == hash("you_are_free") then
 		go.cancel_animations(".")
