@@ -35,7 +35,7 @@ local function follow_player_movement(self, dt)
 	-- move in current direction
 	local direction = vmath.rotate(rotation, UP)
 	local distance = self.speed * dt
-	go.set_position(go.get_position() + direction * distance)
+	msg.post(".", "apply_force", {force = direction * distance * 100, position = go.get_world_position()})
 end
 
 
@@ -53,6 +53,8 @@ function init(self)
 
 	self.angular_speed = 360/2
 
+	self.obstacle_collision = false
+
 end
 
 function final(self)
@@ -62,7 +64,7 @@ function final(self)
 end
 
 local function explode(self)
-	self.life = 1000 
+	self.life = 1000
 	-- go.set(".", "euler.z", -self.rotation)
 	-- go.set_rotation(vmath.quat())
 	self.speed = 0
@@ -75,13 +77,11 @@ function update(self, dt)
 		follow_player_movement(self, dt)
 
 	elseif self.catched then
+		-- rotate over trauma container
 		local center = go.get_position(self.catched_by)
-		
 		local r = vmath.quat_rotation_z(math.rad(self.angular_speed) * dt)
-		
 		self.offset_catched = vmath.rotate(r, self.offset_catched)
-		go.set_position(center + self.offset_catched)	
-
+		go.set_position(center + self.offset_catched)
 	end
 
 	self.life = self.life - dt
