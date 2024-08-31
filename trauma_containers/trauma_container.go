@@ -47,14 +47,15 @@ embedded_components {
   id: "label"
   type: "label"
   data: "size {\n"
-  "  x: 128.0\n"
+  "  x: 160.0\n"
   "  y: 32.0\n"
   "}\n"
-  "text: \"Capacity:\"\n"
+  "line_break: true\n"
+  "text: \"Cierpliwosc terapeutki: XX\"\n"
   "font: \"/builtins/fonts/default.font\"\n"
   "material: \"/builtins/fonts/label-df.material\"\n"
   ""
   position {
-    y: -56.0
+    y: -39.0
   }
 }
