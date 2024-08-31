@@ -1,0 +1,53 @@
+animations {
+  id: "bubu"
+  images {
+    image: "/assets/traumas/bubu_1.png"
+  }
+  images {
+    image: "/assets/traumas/bubu_2.png"
+  }
+  images {
+    image: "/assets/traumas/bubu_3.png"
+  }
+  images {
+    image: "/assets/traumas/bubu_4.png"
+  }
+  images {
+    image: "/assets/traumas/bubu_5.png"
+  }
+  images {
+    image: "/assets/traumas/bubu_6.png"
+  }
+  images {
+    image: "/assets/traumas/bubu_7.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 12
+}
+animations {
+  id: "kiki"
+  images {
+    image: "/assets/traumas/kiki_1.png"
+  }
+  images {
+    image: "/assets/traumas/kiki_2.png"
+  }
+  images {
+    image: "/assets/traumas/kiki_3.png"
+  }
+  images {
+    image: "/assets/traumas/kiki_4.png"
+  }
+  images {
+    image: "/assets/traumas/kiki_5.png"
+  }
+  images {
+    image: "/assets/traumas/kiki_6.png"
+  }
+  images {
+    image: "/assets/traumas/kiki_7.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 12
+}
+extrude_borders: 2
