@@ -5,8 +5,12 @@ require("main.utils")
 -- trauma_container_factory handle this, this is default
 go.property("capacity", 10)
 
+local ANIMATION_RECEIVING = hash("therapist_receiving")
+local ANIMATION_IDLE = hash("therapist_idle")
+
 function init(self)	
 	label.set_text("#label", "Capacity: " .. self.capacity)
+	self.current_animation = ANIMATION_IDLE
 end
 
 function update(self, dt)
@@ -21,7 +25,7 @@ function on_message(self, message_id, message, sender)
 		
 		if message.enter then
 			self.capacity = self.capacity - 1
-			message_type = "catched_you"			
+			message_type = "catched_you"		
 		-- TODO to mi na razie psuje oscylacje
 		-- else
 		-- 	self.capacity = self.capacity + 1
@@ -33,6 +37,15 @@ function on_message(self, message_id, message, sender)
 		-- msg.post("/gui#ui", "add_score", { score = 100 })
 		msg.post(message.other_id, message_type) -- , {params?})
 		
+		if self.current_animation == ANIMATION_IDLE then
+			msg.post("#sprite", "play_animation", { id = ANIMATION_RECEIVING })
+			self.current_animation = ANIMATION_RECEIVING
+		end
+	end
+	
+	if message_id == hash("animation_done") and self.current_animation == ANIMATION_RECEIVING then	
+		msg.post("#sprite", "play_animation", { id = ANIMATION_IDLE })
+		self.current_animation = ANIMATION_IDLE
 	end
 
 end
