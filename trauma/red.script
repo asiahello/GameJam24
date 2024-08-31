@@ -1,3 +1,6 @@
+-- TODO use this, but it didn't work easy
+-- require "trauma.utils"
+
 go.property("dir", vmath.vector3())
 go.property("speed", 50)
 
@@ -12,12 +15,6 @@ local function angle_to_player()
 	local self_pos = go.get_position()
 	local target_pos = go.get_position("/player#sprite")
 	return -math.atan2(target_pos.x - self_pos.x, target_pos.y - self_pos.y)
-end
-
-local function distance_to_player()
-	local self_pos = go.get_position()
-	local target_pos = go.get_position("/player#sprite")
-	return vmath.length(self_pos, target_pos)
 end
 
 function init(self)
@@ -42,10 +39,10 @@ local function explode(self)
 	sprite.play_flipbook("#sprite", "explosion")
 end
 
-
 function update(self, dt)
 
 	if self.follow then
+		-- move_trauma_on_update(go.get("."), dt, self.speed)
 		local current_angle = math.rad(go.get(".", "euler.z"))
 		local target_angle = angle_to_player()
 		-- rotate towards the target angle
@@ -62,10 +59,6 @@ function update(self, dt)
 		local distance = self.speed * dt
 		go.set_position(go.get_position() + direction * distance)
 	end
-
-
-
-
 
 	self.life = self.life - dt
 	if self.life < 0 then
