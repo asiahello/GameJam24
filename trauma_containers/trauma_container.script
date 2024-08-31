@@ -21,13 +21,12 @@ function update(self, dt)
 	end
 end
 
-
-
 function on_message(self, message_id, message, sender)
 	if message_id == hash("trigger_response") then
 		
 		if message.group == hash("player") then
 			go.set("#sprite", "tint", vmath.vector4(1,1,1,1))
+			label.set_text("#label", "Capacity: " .. self.capacity)
 		end
 
 		if message.group == hash("traumas") then
