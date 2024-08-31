@@ -13,3 +13,12 @@ function random_position()
 	local y = math.random(OFFSET, DISPLAY_HEIGHT - 2 * OFFSET)
 	return vmath.vector3(x, y, 1.0)
 end
+
+function is_in(value, collection)
+	for _, i in ipairs(collection) do
+		if i == value then
+			return true
+		end
+	end
+	return false
+end
