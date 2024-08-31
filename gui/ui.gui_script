@@ -18,7 +18,6 @@ function on_message(self, message_id, message, sender)
 	if message_id == GET_OLDER then
 		self.age = self.age + message.age
 		gui.set_text(self.score_node, "YOUR AGE: " .. self.age)
-		msg.post("/player", "set_age", { age = self.age })
 		local s = 1.2
 		gui.animate(self.score_node, gui.PROP_SCALE, vmath.vector4(s, s, s, 0), gui.EASING_OUT, 0.1, 0.0, scale_down)
 		
