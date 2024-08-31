@@ -61,4 +61,28 @@ animations {
   }
   playback: PLAYBACK_NONE
 }
+animations {
+  id: "therapist_idle"
+  images {
+    image: "/assets/dumplings/therapist_idle_1.png"
+  }
+  images {
+    image: "/assets/dumplings/therapist_idle_2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "therapist_receiving"
+  images {
+    image: "/assets/dumplings/therapist_receiving_1.png"
+  }
+  images {
+    image: "/assets/dumplings/therapist_receiving_2.png"
+  }
+  images {
+    image: "/assets/dumplings/therapist_receiving_3.png"
+  }
+  fps: 8
+}
 extrude_borders: 2
