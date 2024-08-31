@@ -138,4 +138,11 @@ animations {
   }
   playback: PLAYBACK_LOOP_FORWARD
 }
+animations {
+  id: "wall_obstacle"
+  images {
+    image: "/assets/customs/orange_box.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+}
 extrude_borders: 2
