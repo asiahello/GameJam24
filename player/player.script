@@ -5,6 +5,7 @@ local RIGHT = hash("key_right")
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
+	msg.post("camera", "follow")
 
 	self.actions = {}
 
