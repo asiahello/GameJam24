@@ -5,13 +5,17 @@ components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "default_animation: \"therapist\"\n"
+  data: "default_animation: \"therapist_idle\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/main/sprites.atlas\"\n"
+  "  texture: \"/main/dumpling.atlas\"\n"
   "}\n"
   ""
+  scale {
+    x: 0.5
+    y: 0.5
+  }
 }
 embedded_components {
   id: "collisionobject"
@@ -32,8 +36,8 @@ embedded_components {
   "    index: 0\n"
   "    count: 3\n"
   "  }\n"
-  "  data: 32.5\n"
-  "  data: 32.5\n"
+  "  data: 40.0\n"
+  "  data: 22.5\n"
   "  data: 0.5\n"
   "}\n"
   ""
