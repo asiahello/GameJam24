@@ -1,0 +1,16 @@
+require("main.utils")
+
+-- TODO maybe it could be in some main.game script
+function init(self)
+	math.randomseed(os.time())
+	local url = "#trauma_container_factory"
+	
+	local rotation = nil
+	local scale = nil
+	
+	for i = 1, 5 do
+		local position = random_position()
+		local properties = { capacity = 10 * i }
+		factory.create(url, position, rotation, properties, scale)
+	end
+end

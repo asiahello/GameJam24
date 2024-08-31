@@ -163,3 +163,17 @@ embedded_instances {
     z: 100.0
   }
 }
+embedded_instances {
+  id: "trauma_container"
+  data: "components {\n"
+  "  id: \"factory\"\n"
+  "  component: \"/trauma_containers/factory.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"trauma_container_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/trauma_containers/trauma_container.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
