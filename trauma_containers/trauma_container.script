@@ -28,7 +28,7 @@ function on_message(self, message_id, message, sender)
 		end
 		local message_type = ""
 
-		if message.enter and message.group == hesh("traumas") then
+		if message.enter and message.group == hash("traumas") then
 			
 			self.capacity = self.capacity - 1
 			message_type = "caught_you"		
