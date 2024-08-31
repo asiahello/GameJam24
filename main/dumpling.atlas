@@ -1,0 +1,64 @@
+animations {
+  id: "dumpling_1"
+  images {
+    image: "/assets/dumplings/dumping_1.png"
+  }
+  playback: PLAYBACK_NONE
+}
+animations {
+  id: "dumpling_2"
+  images {
+    image: "/assets/dumplings/dumping_2.png"
+  }
+  playback: PLAYBACK_NONE
+}
+animations {
+  id: "dumpling_3"
+  images {
+    image: "/assets/dumplings/dumping_3.png"
+  }
+  playback: PLAYBACK_NONE
+}
+animations {
+  id: "dumpling_4"
+  images {
+    image: "/assets/dumplings/dumping_4.png"
+  }
+  playback: PLAYBACK_NONE
+}
+animations {
+  id: "dumpling_5"
+  images {
+    image: "/assets/dumplings/dumping_5.png"
+  }
+  playback: PLAYBACK_NONE
+}
+animations {
+  id: "dumpling_6"
+  images {
+    image: "/assets/dumplings/dumping_6.png"
+  }
+  playback: PLAYBACK_NONE
+}
+animations {
+  id: "dumpling_7"
+  images {
+    image: "/assets/dumplings/dumping_7.png"
+  }
+  playback: PLAYBACK_NONE
+}
+animations {
+  id: "dumpling_8"
+  images {
+    image: "/assets/dumplings/dumping_8.png"
+  }
+  playback: PLAYBACK_NONE
+}
+animations {
+  id: "dumpling_9"
+  images {
+    image: "/assets/dumplings/dumping_9.png"
+  }
+  playback: PLAYBACK_NONE
+}
+extrude_borders: 2
