@@ -75,20 +75,12 @@ function update(self, dt)
 		handle_collision(self, dt)
 	end
 
+	local pos = go.get_position()
 	if self.moving then
-		local pos = go.get_position()
 		pos = pos + self.dir * self.speed * dt
 		go.set_position(pos)
 	end
-
-	if self.firing then
-		-- pozycja wyjsciowa - w jakim kierunku utworzy sie bron 
-		local angle = math.atan2(self.dir.y, self.dir.x)
-		local rot = vmath.quat_rotation_z(angle) 
-		local props = { dir = self.dir }
-		factory.create("#rocket_factory", nil, rot, props)
-	end
-
+	
 	self.input.x = 0
 	self.input.y = 0
 	self.moving = false
@@ -100,7 +92,6 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash("get_older") then
 		self.age = self.age + message.age
 		update_animation(self)
-
 	elseif message_id == hash("contact_point_response") then
 		if message.group == hash("obstacles") then
 			self.obstacle_collision = true
