@@ -46,10 +46,10 @@ function init(self)
 	self.range = 200
 	
 	self.follow = true
-	self.catched = false
+	self.caught = false
 
-	self.catched_by = nil
-	self.offset_catched = vmath.vector3(50,0,0)
+	self.caught_by = nil
+	self.offset_caught = vmath.vector3(50,0,0)
 
 	self.angular_speed = 360/2
 
@@ -65,31 +65,19 @@ function final(self)
 	-- Remove this function if not needed
 end
 
-local function explode(self)
-	self.life = 1000
-	-- go.set(".", "euler.z", -self.rotation)
-	-- go.set_rotation(vmath.quat())
-	self.speed = 0
-	sprite.play_flipbook("#sprite", "explosion")
-end
-
 function update(self, dt)
 	self.correction = vmath.vector3()
 
 	if self.follow then
 		follow_player_movement(self, dt)
 
-	elseif self.catched then
+	elseif self.caught then
+		self.speed = 1
 		-- rotate over trauma container
-		local center = go.get_position(self.catched_by)
+		local center = go.get_position(self.caught_by)
 		local r = vmath.quat_rotation_z(math.rad(self.angular_speed) * dt)
-		self.offset_catched = vmath.rotate(r, self.offset_catched)
-		go.set_position(center + self.offset_catched)
-	end
-
-	self.life = self.life - dt
-	if self.life < 0 then
-		explode(self)
+		self.offset_caught = vmath.rotate(r, self.offset_caught)
+		go.set_position(center + self.offset_caught)
 	end
 end
 
@@ -116,17 +104,17 @@ function on_message(self, message_id, message, sender)
 			msg.post("/player", "get_older", { age = 1 })
 		end
 
-	elseif message_id == hash("catched_you") and not self.catched then
+	elseif message_id == hash("caught_you") and not self.caught then
 		self.follow = false
-		self.catched = true
-		self.catched_by = sender
+		self.caught = true
+		self.caught_by = sender
 		go.animate(".", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 2)		
-		self.offset_catched = go.get_position() - go.get_position(self.catched_by)
+		self.offset_caught = go.get_position() - go.get_position(self.caught_by)
 
 	elseif message_id == hash("you_are_free") then
 		go.cancel_animations(".")
 		self.follow = true
-		self.catched = false
+		self.caught = false
 	end
 end
 

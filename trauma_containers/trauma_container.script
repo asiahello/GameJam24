@@ -15,9 +15,9 @@ function init(self)
 end
 
 function update(self, dt)
-	-- Add update code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
+	if self.capacity <= 0 then
+		go.delete(".")
+	end
 end
 
 function on_message(self, message_id, message, sender)
@@ -28,9 +28,10 @@ function on_message(self, message_id, message, sender)
 		end
 		local message_type = ""
 
-		if message.enter then
+		if message.enter and message.group == hash("traumas") then
+			
 			self.capacity = self.capacity - 1
-			message_type = "catched_you"		
+			message_type = "caught_you"		
 		-- TODO to mi na razie psuje oscylacje
 		-- else
 		-- 	self.capacity = self.capacity + 1
