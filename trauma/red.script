@@ -26,16 +26,11 @@ function init(self)
 	self.rotation = 0
 	self.range = 200
 	self.follow = true
-end
-
-function final(self)
-	-- Add finalization code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
+	self.obstacle_collision = false
 end
 
 local function explode(self)
-	self.life = 1000 
+	self.life = 1000
 	-- go.set(".", "euler.z", -self.rotation)
 	-- go.set_rotation(vmath.quat())
 	self.speed = 0
@@ -60,7 +55,7 @@ function update(self, dt)
 		-- move in current direction
 		local direction = vmath.rotate(rotation, UP)
 		local distance = self.speed * dt
-		go.set_position(go.get_position() + direction * distance)
+		msg.post(".", "apply_force", {force = direction * distance * 100, position = go.get_world_position()})
 	end
 
 

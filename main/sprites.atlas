@@ -145,4 +145,21 @@ animations {
   }
   playback: PLAYBACK_LOOP_FORWARD
 }
+animations {
+  id: "therapist"
+  images {
+    image: "/assets/buildings/medic-bay/1.png"
+  }
+  images {
+    image: "/assets/buildings/medic-bay/2.png"
+  }
+  images {
+    image: "/assets/buildings/medic-bay/3.png"
+  }
+  images {
+    image: "/assets/buildings/medic-bay/4.png"
+  }
+  playback: PLAYBACK_LOOP_PINGPONG
+  fps: 12
+}
 extrude_borders: 2
