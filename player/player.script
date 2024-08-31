@@ -20,7 +20,6 @@ end
 
 function final(self)
 	msg.post(".", "release_input_focus")
-	
 end
 
 local function update_animation(self)
