@@ -1,19 +1,15 @@
-local DISPLAY_WIDTH = 1280
-local DISPLAY_HEIGHT = 720
-
-local OFFSET = 64
+require("main.utils")
 
 local frequency = 0.5
 local bonus_prob = 0.2
 
-local function random_position()
-	local x = math.random(OFFSET, DISPLAY_WIDTH - 2 * OFFSET)
-	local y = math.random(OFFSET, DISPLAY_HEIGHT - 2 * OFFSET)
-	return vmath.vector3(x, y, 1.0)
-end
-
 local function spawn_trauma(factory_name)
-	return factory.create(factory_name, random_position(), nil, nil, vmath.vector3(1))
+	local url = factory_name
+	local position = random_position()
+	local properties = {}
+	local rotation = nil
+	local scale = nil
+	return factory.create(url, position, rotation, properties, scale)
 end
 
 function init(self)
