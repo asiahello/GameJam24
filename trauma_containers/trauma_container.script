@@ -8,6 +8,8 @@ go.property("capacity", 10)
 local ANIMATION_RECEIVING = hash("therapist_receiving")
 local ANIMATION_IDLE = hash("therapist_idle")
 
+local LABEL_CAPACITY = "Cierpliwosc terapeutki: "
+
 function init(self)	
 	self.current_animation = ANIMATION_IDLE
 	self.traumas = {}
@@ -29,7 +31,7 @@ function on_message(self, message_id, message, sender)
 		if message.group == hash("player") then
 			self.is_visible = true
 			go.set("#sprite", "tint", vmath.vector4(1,1,1,1))
-			label.set_text("#label", "Capacity: " .. self.capacity)
+			label.set_text("#label", LABEL_CAPACITY .. self.capacity)
 		end
 
 		if message.group == hash("traumas") and self.is_visible then
@@ -37,12 +39,12 @@ function on_message(self, message_id, message, sender)
 				self.capacity = self.capacity - 1
 				table.insert(self.traumas, message.other_id)
 				msg.post(message.other_id, "caught_you") -- , {params?})
-				label.set_text("#label", "Capacity: " .. self.capacity)
+				label.set_text("#label", LABEL_CAPACITY .. self.capacity)
 			end
 		end
 
 		if self.is_visible then
-			label.set_text("#label", "Capacity: " .. self.capacity)
+			label.set_text("#label", LABEL_CAPACITY .. self.capacity)
 		end
 
 		if self.current_animation == ANIMATION_IDLE then
