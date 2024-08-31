@@ -22,8 +22,8 @@ embedded_components {
   "    index: 0\n"
   "    count: 3\n"
   "  }\n"
-  "  data: 10.0\n"
-  "  data: 10.0\n"
+  "  data: 15.0\n"
+  "  data: 9.0\n"
   "  data: 10.0\n"
   "}\n"
   ""
@@ -37,7 +37,7 @@ embedded_components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "default_animation: \"player-down\"\n"
+  data: "default_animation: \"dumpling_1\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "size {\n"
   "  x: 22.0\n"
@@ -45,7 +45,11 @@ embedded_components {
   "}\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/main/sprites.atlas\"\n"
+  "  texture: \"/main/dumpling.atlas\"\n"
   "}\n"
   ""
+  scale {
+    x: 0.2
+    y: 0.2
+  }
 }
