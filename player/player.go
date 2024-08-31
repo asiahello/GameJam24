@@ -12,6 +12,7 @@ embedded_components {
   "group: \"player\"\n"
   "mask: \"traumas\"\n"
   "mask: \"obstacles\"\n"
+  "mask: \"trauma_container\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"
@@ -26,12 +27,6 @@ embedded_components {
   "  data: 9.0\n"
   "  data: 10.0\n"
   "}\n"
-  ""
-}
-embedded_components {
-  id: "rocket_factory"
-  type: "factory"
-  data: "prototype: \"/player/rocket.go\"\n"
   ""
 }
 embedded_components {
