@@ -11,6 +11,7 @@ local ANIMATION_IDLE = hash("therapist_idle")
 function init(self)	
 	self.current_animation = ANIMATION_IDLE
 	self.my_traumas = {}
+	self.is_visible = false
 	label.set_text("#label", "")
 	go.set("#sprite", "tint", vmath.vector4(1,1,1,0))
 end
@@ -24,13 +25,14 @@ end
 function on_message(self, message_id, message, sender)
 	if message_id == hash("trigger_response") then
 		if message.group == hash("player") then
+			self.is_visible = true
 			go.set("#sprite", "tint", vmath.vector4(1,1,1,1))
 			label.set_text("#label", "Capacity: " .. self.capacity)
 		end
+		
 		local message_type = ""
 
-		if message.enter and message.group == hash("traumas") then
-			
+		if message.enter and message.group == hash("traumas") and self.is_visible then
 			self.capacity = self.capacity - 1
 			message_type = "caught_you"
 			table.insert(self.my_traumas, message.other_id)
@@ -39,8 +41,9 @@ function on_message(self, message_id, message, sender)
 		-- 	self.capacity = self.capacity + 1
 		-- 	message_type = "you_are_free"	
 		end
-
-		label.set_text("#label", "Capacity: " .. self.capacity)
+		if self.is_visible then
+			label.set_text("#label", "Capacity: " .. self.capacity)
+		end
 		-- TODO update szczescie
 		-- msg.post("/gui#ui", "add_score", { score = 100 })
 		msg.post(message.other_id, message_type) -- , {params?})
