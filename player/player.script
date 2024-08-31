@@ -7,8 +7,8 @@ function init(self)
 	msg.post(".", "acquire_input_focus")
 	msg.post("camera", "follow")
 
-	self.actions = {}
-
+	self.age = 0
+	
 	self.moving = false
 	self.firing = false
 	self.obstacle_collision = false
@@ -89,8 +89,8 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash("set_age") then
-		self.age = message.age
+	if message_id == hash("get_older") then
+		self.age = self.age + message.age
 		update_animation(self)
 	elseif message_id == hash("contact_point_response") then
 		if message.group == hash("obstacles") then

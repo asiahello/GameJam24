@@ -10,38 +10,41 @@ local ANIMATION_IDLE = hash("therapist_idle")
 
 function init(self)	
 	self.current_animation = ANIMATION_IDLE
+	self.traumas = {}
+	self.is_visible = false
+	
 	label.set_text("#label", "")
 	go.set("#sprite", "tint", vmath.vector4(1,1,1,0))
 end
 
 function update(self, dt)
-	-- Add update code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
+	if self.capacity <= 0 then
+		go.delete(".")
+	end
 end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("trigger_response") then
+		
 		if message.group == hash("player") then
+			self.is_visible = true
 			go.set("#sprite", "tint", vmath.vector4(1,1,1,1))
 			label.set_text("#label", "Capacity: " .. self.capacity)
 		end
-		local message_type = ""
 
-		if message.enter then
-			self.capacity = self.capacity - 1
-			message_type = "catched_you"		
-		-- TODO to mi na razie psuje oscylacje
-		-- else
-		-- 	self.capacity = self.capacity + 1
-		-- 	message_type = "you_are_free"	
+		if message.group == hash("traumas") and self.is_visible then
+			if message.enter and not is_in(message.other_id, self.traumas) then
+				self.capacity = self.capacity - 1
+				table.insert(self.traumas, message.other_id)
+				msg.post(message.other_id, "caught_you") -- , {params?})
+				label.set_text("#label", "Capacity: " .. self.capacity)
+			end
 		end
 
-		label.set_text("#label", "Capacity: " .. self.capacity)
-		-- TODO update szczescie
-		-- msg.post("/gui#ui", "add_score", { score = 100 })
-		msg.post(message.other_id, message_type) -- , {params?})
-		
+		if self.is_visible then
+			label.set_text("#label", "Capacity: " .. self.capacity)
+		end
+
 		if self.current_animation == ANIMATION_IDLE then
 			msg.post("#sprite", "play_animation", { id = ANIMATION_RECEIVING })
 			self.current_animation = ANIMATION_RECEIVING
@@ -65,4 +68,10 @@ function on_input(self, action_id, action)
 	-- be received regardless of where on the screen it happened.
 	-- Learn more: https://defold.com/manuals/input/
 	-- Remove this function if not needed
+end
+
+function final(self)
+	for _, trauma in ipairs(self.traumas) do
+		msg.post(trauma, "you_are_free")
+	end
 end
