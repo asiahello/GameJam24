@@ -1,6 +1,6 @@
 components {
   id: "therapist"
-  component: "/trauma_containers/therapist.script"
+  component: "/trauma_containers/trauma_container.script"
 }
 embedded_components {
   id: "sprite"
@@ -16,7 +16,7 @@ embedded_components {
 embedded_components {
   id: "collisionobject"
   type: "collisionobject"
-  data: "type: COLLISION_OBJECT_TYPE_KINEMATIC\n"
+  data: "type: COLLISION_OBJECT_TYPE_TRIGGER\n"
   "mass: 0.0\n"
   "friction: 0.1\n"
   "restitution: 0.5\n"
