@@ -21,20 +21,22 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("trigger_response") then
+		local message_type = ""
+		
 		if message.enter then
-			print("I am now inside", message.other_id)
 			self.capacity = self.capacity - 1
-			
-		else
-			-- take action for exit
-			print("I am now outside", message.other_id)
-			self.capacity = self.capacity + 1
+			message_type = "catched_you"		
+		-- TODO to mi na razie psuje oscylacje
+		-- else
+		-- 	self.capacity = self.capacity + 1
+		-- 	message_type = "you_are_free"	
 		end
+
 		label.set_text("#label", "Capacity: " .. self.capacity)
 		-- TODO update szczescie
 		-- msg.post("/gui#ui", "add_score", { score = 100 })
-		msg.post(message.other_id, "catched_you") -- , {params?})
-
+		msg.post(message.other_id, message_type) -- , {params?})
+		
 		if self.current_animation == ANIMATION_IDLE then
 			msg.post("#sprite", "play_animation", { id = ANIMATION_RECEIVING })
 			self.current_animation = ANIMATION_RECEIVING
