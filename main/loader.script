@@ -1,0 +1,22 @@
+function init(self)
+	msg.post("#proxy", "load")
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("proxy_loaded") then
+		msg.post(sender, "init")
+		msg.post(sender, "enable")
+		msg.post("main:/game", "disable")
+		msg.post("main:/obstacle", "disable")
+		msg.post("main:/trauma_container", "disable")
+		msg.post("main:/trauma_factory", "disable")
+		
+	end
+end
+
+
+function final(self)
+	msg.post("#myproxy", "disable")
+	msg.post("#myproxy", "final")
+	msg.post("#myproxy", "unload")
+end
