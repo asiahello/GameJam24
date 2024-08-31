@@ -53,35 +53,40 @@ local function bounced(self)
 	self.collision_bounce = false
 end
 
+local function handle_collision(self, dt)
+	print("Collision with obstacle detected")
+
+	-- Determine the direction of the collision
+	local pos = go.get_position()
+
+	-- Calculate the bounce direction based on the collision
+	local bounce_distance = 15
+	local bounce_dir = vmath.vector3(0, 0, 0)
+
+	if math.abs(self.dir.x) > math.abs(self.dir.y) then
+		-- Horizontal collision: Bounce in the opposite X direction
+		bounce_dir.x = -self.dir.x * bounce_distance
+	else
+		-- Vertical collision: Bounce in the opposite Y direction
+		bounce_dir.y = -self.dir.y * bounce_distance
+	end
+
+	-- Calculate the final position after the bounce
+	local final_pos = pos + bounce_dir
+
+	-- Animate the player to the final position with a bounce effect
+	go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, final_pos, go.EASING_OUTBOUNCE, 0.2, 0, bounced)
+
+	-- Prevent further movement
+	self.moving = false
+	self.obstacle_collision = false
+	
+end
+
 
 function update(self, dt)
 	if self.obstacle_collision then
-		print("Collision with obstacle detected")
-
-		-- Determine the direction of the collision
-		local pos = go.get_position()
-
-		-- Calculate the bounce direction based on the collision
-		local bounce_distance = 15
-		local bounce_dir = vmath.vector3(0, 0, 0)
-
-		if math.abs(self.dir.x) > math.abs(self.dir.y) then
-			-- Horizontal collision: Bounce in the opposite X direction
-			bounce_dir.x = -self.dir.x * bounce_distance
-		else
-			-- Vertical collision: Bounce in the opposite Y direction
-			bounce_dir.y = -self.dir.y * bounce_distance
-		end
-
-		-- Calculate the final position after the bounce
-		local final_pos = pos + bounce_dir
-
-		-- Animate the player to the final position with a bounce effect
-		go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, final_pos, go.EASING_OUTBOUNCE, 0.2, 0, bounced)
-
-		-- Prevent further movement
-		self.moving = false
-		self.obstacle_collision = false
+		handle_collision(self, dt)
 	end
 
 	if self.moving then
