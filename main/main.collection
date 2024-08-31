@@ -1,38 +1,10 @@
 name: "main"
 instances {
-  id: "tank"
-  prototype: "/main/tank.go"
-  position {
-    x: 100.0
-    y: 100.0
-    z: 1.0
-  }
-}
-instances {
-  id: "tank1"
-  prototype: "/main/tank.go"
-  position {
-    x: 200.0
-    y: 200.0
-    z: 1.0
-  }
-}
-instances {
-  id: "tank2"
-  prototype: "/main/tank.go"
-  position {
-    x: 300.0
-    y: 300.0
-    z: 1.0
-  }
-}
-instances {
   id: "player"
   prototype: "/player/player.go"
   position {
-    x: 640.0
-    y: 360.0
-    z: 1.0
+    x: -56.0
+    y: 141.0
   }
   scale3 {
     x: 2.0
@@ -43,9 +15,8 @@ instances {
   id: "obstacle"
   prototype: "/obstacles/obstacle.go"
   position {
-    x: 633.0
-    y: 448.0
-    z: 1.0
+    x: -45.0
+    y: 247.0
   }
 }
 scale_along_z: 0
@@ -53,7 +24,7 @@ embedded_instances {
   id: "game"
   data: "components {\n"
   "  id: \"map\"\n"
-  "  component: \"/main/map.tilemap\"\n"
+  "  component: \"/main/oilcloth.tilemap\"\n"
   "}\n"
   "embedded_components {\n"
   "  id: \"collisionobject\"\n"
@@ -68,8 +39,8 @@ embedded_instances {
   "  shapes {\\n"
   "    shape_type: TYPE_BOX\\n"
   "    position {\\n"
-  "      x: -5.0\\n"
-  "      y: 360.0\\n"
+  "      x: -768.2534\\n"
+  "      y: 221.49715\\n"
   "    }\\n"
   "    rotation {\\n"
   "    }\\n"
@@ -79,8 +50,8 @@ embedded_instances {
   "  shapes {\\n"
   "    shape_type: TYPE_BOX\\n"
   "    position {\\n"
-  "      x: 640.0\\n"
-  "      y: -5.0\\n"
+  "      x: 53.285294\\n"
+  "      y: 1284.6248\\n"
   "    }\\n"
   "    rotation {\\n"
   "    }\\n"
@@ -90,8 +61,7 @@ embedded_instances {
   "  shapes {\\n"
   "    shape_type: TYPE_BOX\\n"
   "    position {\\n"
-  "      x: 645.0\\n"
-  "      y: 725.0\\n"
+  "      y: -908.9072\\n"
   "    }\\n"
   "    rotation {\\n"
   "    }\\n"
@@ -101,8 +71,8 @@ embedded_instances {
   "  shapes {\\n"
   "    shape_type: TYPE_BOX\\n"
   "    position {\\n"
-  "      x: 1285.0\\n"
-  "      y: 360.0\\n"
+  "      x: 1157.3286\\n"
+  "      y: 210.81093\\n"
   "    }\\n"
   "    rotation {\\n"
   "    }\\n"
@@ -110,24 +80,30 @@ embedded_instances {
   "    count: 3\\n"
   "  }\\n"
   "  data: 5.0\\n"
-  "  data: 360.0\\n"
+  "  data: 1500.0\\n"
   "  data: 0.5\\n"
-  "  data: 640.0\\n"
+  "  data: 1250.0\\n"
   "  data: 5.0\\n"
   "  data: 0.5\\n"
-  "  data: 640.0\\n"
+  "  data: 1250.0\\n"
   "  data: 5.0\\n"
   "  data: 0.5\\n"
   "  data: 5.0\\n"
-  "  data: 362.5\\n"
+  "  data: 1250.0\\n"
   "  data: 0.5\\n"
   "}\\n"
   "\"\n"
   "}\n"
   ""
   position {
-    x: -1.0
-    y: 2.0
+    x: -54.0
+    y: -53.0
+    z: -100.0
+  }
+  scale3 {
+    x: 0.697102
+    y: 0.697102
+    z: 0.697102
   }
 }
 embedded_instances {
@@ -137,6 +113,11 @@ embedded_instances {
   "  component: \"/gui/ui.gui\"\n"
   "}\n"
   ""
+  position {
+    x: -278.0
+    y: -72.0
+    z: -46.0
+  }
 }
 embedded_instances {
   id: "camera"
@@ -173,6 +154,11 @@ embedded_instances {
   "\"\n"
   "}\n"
   ""
+  position {
+    x: -171.0
+    y: 226.0
+    z: -26.0
+  }
 }
 embedded_instances {
   id: "trauma_factory"
@@ -193,4 +179,8 @@ embedded_instances {
   "\"\n"
   "}\n"
   ""
+  position {
+    x: 231.0
+    y: -124.0
+  }
 }

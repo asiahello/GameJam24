@@ -4,10 +4,6 @@ go.property("speed", 50)
 local UP = vmath.vector3(0, 1, 0)
 local RAD_180 = math.pi
 
-local function follow_player(self)
-	self.follow = true
-end
-
 local function angle_to_player()
 	local self_pos = go.get_position()
 	local target_pos = go.get_position("/player#sprite")
@@ -21,7 +17,7 @@ local function distance_to_player()
 end
 
 local function follow_player_movement(self, dt)
-	local current_angle = math.rad(go.get(".", "euler.z"))
+	print("following player")
 	local target_angle = angle_to_player()
 	-- rotate towards the target angle
 	-- spherical interpolation towards the target rotation
@@ -70,7 +66,6 @@ function update(self, dt)
 		follow_player_movement(self, dt)
 
 	elseif self.caught_by then
-		self.speed = 1
 		-- rotate over trauma container
 		local center = go.get_position(self.caught_by)
 		local r = vmath.quat_rotation_z(math.rad(self.angular_speed) * dt)
@@ -105,6 +100,7 @@ function on_message(self, message_id, message, sender)
 	elseif message_id == hash("caught_you") and not self.caught then
 		self.follow = false
 		self.caught_by = sender
+
 		go.animate(".", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 2)		
 		self.offset_caught = go.get_position() - go.get_position(self.caught_by)
 
