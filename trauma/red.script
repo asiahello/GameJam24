@@ -46,8 +46,6 @@ function init(self)
 	self.range = 200
 	
 	self.follow = true
-	self.caught = false
-
 	self.caught_by = nil
 	self.offset_caught = vmath.vector3(50,0,0)
 
@@ -71,7 +69,7 @@ function update(self, dt)
 	if self.follow then
 		follow_player_movement(self, dt)
 
-	elseif self.caught then
+	elseif self.caught_by then
 		self.speed = 1
 		-- rotate over trauma container
 		local center = go.get_position(self.caught_by)
@@ -106,7 +104,6 @@ function on_message(self, message_id, message, sender)
 
 	elseif message_id == hash("caught_you") and not self.caught then
 		self.follow = false
-		self.caught = true
 		self.caught_by = sender
 		go.animate(".", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 2)		
 		self.offset_caught = go.get_position() - go.get_position(self.caught_by)
@@ -114,7 +111,7 @@ function on_message(self, message_id, message, sender)
 	elseif message_id == hash("you_are_free") then
 		go.cancel_animations(".")
 		self.follow = true
-		self.caught = false
+		self.caught_by = nil
 	end
 end
 

@@ -10,6 +10,7 @@ local ANIMATION_IDLE = hash("therapist_idle")
 
 function init(self)	
 	self.current_animation = ANIMATION_IDLE
+	self.my_traumas = {}
 	label.set_text("#label", "")
 	go.set("#sprite", "tint", vmath.vector4(1,1,1,0))
 end
@@ -31,7 +32,8 @@ function on_message(self, message_id, message, sender)
 		if message.enter and message.group == hash("traumas") then
 			
 			self.capacity = self.capacity - 1
-			message_type = "caught_you"		
+			message_type = "caught_you"
+			table.insert(self.my_traumas, message.other_id)
 		-- TODO to mi na razie psuje oscylacje
 		-- else
 		-- 	self.capacity = self.capacity + 1
@@ -66,4 +68,10 @@ function on_input(self, action_id, action)
 	-- be received regardless of where on the screen it happened.
 	-- Learn more: https://defold.com/manuals/input/
 	-- Remove this function if not needed
+end
+
+function final(self)
+	for _, trauma in ipairs(self.my_traumas) do
+		msg.post(trauma, "you_are_free")
+	end
 end
