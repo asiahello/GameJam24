@@ -1,0 +1,15 @@
+require("main.utils")
+
+function init(self)
+	local positions = {}
+	local position = nil
+
+	for i = 1, 10 do
+		repeat
+			position = random_position()
+		until i < 1 or is_position_valid(position, positions)
+
+		factory.create("#splash_factory", position, nil, {},  nil)
+		table.insert(positions, position)
+	end
+end

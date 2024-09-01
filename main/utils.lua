@@ -3,8 +3,8 @@
 -- require "my_directory.my_file"
 -- in any script using the functions.
 
-local DISPLAY_WIDTH = 15 * 128
-local DISPLAY_HEIGHT = 17 * 128
+local DISPLAY_WIDTH = 30 * 128
+local DISPLAY_HEIGHT = 30 * 128
 
 local OFFSET = 192
 
@@ -21,4 +21,18 @@ function is_in(value, collection)
 		end
 	end
 	return false
+end
+
+function distance(x1, y1, x2, y2)
+	return math.sqrt((x2 - x1)^2 + (y2 - y1)^2)
+end
+
+function is_position_valid(position, existing_objects)
+	local min_distance = 300
+	for _, obj in ipairs(existing_objects) do
+		if distance(position.x, position.y, obj.x, obj.y) < min_distance then
+			return false
+		end
+	end
+	return true
 end

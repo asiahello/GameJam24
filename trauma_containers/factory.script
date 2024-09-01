@@ -1,21 +1,5 @@
 require("main.utils")
 
--- TODO maybe it could be in some main.game script
-
-local function distance(x1, y1, x2, y2)
-	return math.sqrt((x2 - x1)^2 + (y2 - y1)^2)
-end
-
-local function is_position_valid(position, existing_objects)
-	local min_distance = 300
-	for _, obj in ipairs(existing_objects) do
-		if distance(position.x, position.y, obj.x, obj.y) < min_distance then
-			return false
-		end
-	end
-	return true
-end
-
 function init(self)
 	math.randomseed(os.time())
 	self.containers = {}
