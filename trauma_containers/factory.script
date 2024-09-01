@@ -2,18 +2,18 @@ require("main.utils")
 
 function init(self)
 	math.randomseed(os.time())
+	self.containers = {}
 	local positions = {}
 	local position = nil
-	-- self.therapists = {}
 
 	for i = 1, 20 do
 		repeat
 			position = random_position()
 		until i <= 1 or is_position_valid(position, positions)
 
-		factory.create("#trauma_container_factory", position, nil, { capacity = math.random(3,8) }, nil)
+		local container = factory.create("#trauma_container_factory", position, nil, { capacity = math.random(3,8) }, nil)
+		table.insert(self.containers, container)
 		table.insert(positions, position)
-		-- table.insert(self.therapists, position)
 	end
 
 	-- SZPACHLA, to powinno byc w jakims obstacles script
@@ -29,10 +29,8 @@ function init(self)
 		"/obstacles#roller_factory",
 		"/obstacles#grater_factory",
 	}
-
 	
-	
-	for _, url in ipairs(obstacles_urls) do		
+	for _, url in ipairs(obstacles_urls) do
 		repeat
 			position = random_position()
 		-- TODO why diff behaviours on until ?
@@ -43,4 +41,11 @@ function init(self)
 	end
 
 	
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("release_the_kraken") then
+		go.delete(self.containers, true)
+		
+	end
 end

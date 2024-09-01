@@ -14,6 +14,7 @@ embedded_components {
   "mask: \"obstacles\"\n"
   "mask: \"trauma_container\"\n"
   "mask: \"slowers\"\n"
+  "mask: \"boss\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"

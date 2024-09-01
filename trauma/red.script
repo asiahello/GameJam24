@@ -39,7 +39,7 @@ function init(self)
 	self.life = 10
 	self.rotation = 0
 	self.range = 200
-	
+
 	self.follow = true
 	self.caught_by = nil
 	self.offset_caught = vmath.vector3(50,0,0)
@@ -111,7 +111,7 @@ function on_message(self, message_id, message, sender)
 		self.follow = false
 		self.caught_by = sender
 
-		go.animate(".", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 2)		
+		go.animate(".", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 2)
 		self.offset_caught = go.get_position() - go.get_position(self.caught_by)
 
 	elseif message_id == hash("you_are_free") then
