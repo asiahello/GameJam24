@@ -24,8 +24,8 @@ embedded_components {
   "    index: 0\n"
   "    count: 3\n"
   "  }\n"
-  "  data: 10.0\n"
-  "  data: 10.0\n"
+  "  data: 18.28125\n"
+  "  data: 16.769232\n"
   "  data: 10.0\n"
   "}\n"
   ""
@@ -41,7 +41,8 @@ embedded_components {
   "}\n"
   ""
   scale {
-    x: 0.3
-    y: 0.3
+    x: 0.5
+    y: 0.5
+    z: 0.5
   }
 }
