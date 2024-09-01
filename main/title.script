@@ -8,7 +8,6 @@ function on_input(self, action_id, action)
 	-- tylko taki mamy script w intro, wiec...
 	if action_id == hash("key_space") and action.released then
 		msg.post("main:/loader#loader", "start_therapy")
-		print("poszło")
 	end
 end
 
