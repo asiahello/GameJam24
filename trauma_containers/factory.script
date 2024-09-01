@@ -9,8 +9,7 @@ end
 local function is_position_valid(position, existing_objects)
 	local min_distance = 300
 	for _, obj in ipairs(existing_objects) do
-		local distance = distance(position.x, position.y, obj.x, obj.y)
-		if distance < min_distance then
+		if distance(position.x, position.y, obj.x, obj.y) < min_distance then
 			return false
 		end
 	end
@@ -20,29 +19,15 @@ end
 
 function init(self)
 	math.randomseed(os.time())
-	self.trauma_containers = {}
-
 	local positions = {}
-	
-	local url = "#trauma_container_factory"
-	
-	local rotation = nil
-	local scale = nil
-	
+	local position = nil
+
 	for i = 1, 5 do
-		
-		local position = random_position()
-		
-		while i > 1 and not is_position_valid(position, positions) do
+		repeat
 			position = random_position()
-		end
+		until i > 1 and not is_position_valid(position, positions)
 
-		local properties = { capacity = 10 * i }
-
-		factory.create(url, position, rotation, properties, scale)
-		
-		--table.insert(self.trauma_containers, x)
-
+		factory.create("#trauma_container_factory", position, nil, { capacity = 10 * i }, nil)
 		table.insert(positions, position)
 	end
 end
