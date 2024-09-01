@@ -1,4 +1,4 @@
-tile_set: "/assets/evil_oilcloth.tilesource"
+tile_set: "/assets/backgrounds/evil_oilcloth.tilesource"
 layers {
   id: "layer1"
   z: 0.0

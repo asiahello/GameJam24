@@ -1,4 +1,4 @@
-image: "/assets/cerata.png"
+image: "/assets/backgrounds/evil_cerata.png"
 tile_width: 128
 tile_height: 128
 collision_groups: "default"
