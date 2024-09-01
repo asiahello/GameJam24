@@ -78,6 +78,12 @@ function on_message(self, message_id, message, sender)
 		print("animation done")
 	end
 
+	if message_id == hash("go_slower") then
+		self.speed = 1
+	elseif message_id == hash("go_faster") then
+		self.speed = 50
+	end
+
 	if message_id == hash("contact_point_response")  and message.other_group == hash("player") then
 		if message.distance > 0 then
 			-- project the accumulated correction onto the penetration vector
@@ -96,6 +102,7 @@ function on_message(self, message_id, message, sender)
 		end
 
 	elseif message_id == hash("caught_you") and not self.caught then
+		self.speed = 50
 		self.follow = false
 		self.caught_by = sender
 

@@ -22,3 +22,17 @@ function is_in(value, collection)
 	end
 	return false
 end
+
+function distance(x1, y1, x2, y2)
+	return math.sqrt((x2 - x1)^2 + (y2 - y1)^2)
+end
+
+function is_position_valid(position, existing_objects)
+	local min_distance = 300
+	for _, obj in ipairs(existing_objects) do
+		if distance(position.x, position.y, obj.x, obj.y) < min_distance then
+			return false
+		end
+	end
+	return true
+end

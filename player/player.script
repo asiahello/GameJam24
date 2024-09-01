@@ -132,6 +132,10 @@ function on_message(self, message_id, message, sender)
 		if message.group == hash("obstacles") then
 			self.obstacle_collision = true
 		end
+	elseif message_id == hash("go_slower") then
+		self.speed = 100
+	elseif message_id == hash("go_faster") then
+		self.speed = 300
 	end
 
 end

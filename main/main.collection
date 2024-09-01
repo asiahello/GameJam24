@@ -137,3 +137,21 @@ embedded_instances {
   "}\n"
   ""
 }
+embedded_instances {
+  id: "splash_factory"
+  data: "components {\n"
+  "  id: \"factory\"\n"
+  "  component: \"/slowers/factory.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"splash_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/slowers/splash.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 692.0
+    y: 649.0
+  }
+}

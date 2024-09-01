@@ -13,6 +13,7 @@ embedded_components {
   "mask: \"obstacles\"\n"
   "mask: \"player\"\n"
   "mask: \"trauma_container\"\n"
+  "mask: \"slowers\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"
