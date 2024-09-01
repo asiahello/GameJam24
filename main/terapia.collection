@@ -61,15 +61,15 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "trauma_container"
+  id: "therapist"
   data: "components {\n"
   "  id: \"factory\"\n"
-  "  component: \"/trauma_containers/factory.script\"\n"
+  "  component: \"/therapist/factory.script\"\n"
   "}\n"
   "embedded_components {\n"
-  "  id: \"trauma_container_factory\"\n"
+  "  id: \"therapist_factory\"\n"
   "  type: \"factory\"\n"
-  "  data: \"prototype: \\\"/trauma_containers/trauma_container.go\\\"\\n"
+  "  data: \"prototype: \\\"/therapist/therapist.go\\\"\\n"
   "\"\n"
   "}\n"
   ""
@@ -147,7 +147,7 @@ embedded_instances {
   "  id: \"splash_factory\"\n"
   "  type: \"factory\"\n"
   "  data: \"prototype: \\\"/slowers/splash.go\\\"\\n"
-    "\"\n"
+  "\"\n"
   "}\n"
   ""
 }

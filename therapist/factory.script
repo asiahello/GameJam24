@@ -11,7 +11,7 @@ function init(self)
 			position = random_position()
 		until i <= 1 or is_position_valid(position, positions)
 
-		local container = factory.create("#trauma_container_factory", position, nil, { capacity = math.random(3,8) }, nil)
+		local container = factory.create("#therapist_factory", position, nil, { capacity = math.random(3,8) }, nil)
 		table.insert(self.containers, container)
 		table.insert(positions, position)
 	end
