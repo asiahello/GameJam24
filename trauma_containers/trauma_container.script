@@ -7,6 +7,8 @@ go.property("capacity", 10)
 
 local ANIMATION_RECEIVING = hash("therapist_receiving")
 local ANIMATION_IDLE = hash("therapist_idle")
+local ANIMATION_OVERLOAD = hash("therapist_overload")
+
 
 local LABEL_CAPACITY = "Cierpliwosc terapeutki: "
 
@@ -19,17 +21,30 @@ local function play_flipbook_recieving()
 	sprite.play_flipbook("#sprite", ANIMATION_RECEIVING, play_flipbook_idle)
 end
 
+local function overloaded()
+	print('overloaded')
+	go.delete(".")
+end
+
+local function play_flipbook_overload()
+	sprite.play_flipbook("#sprite", ANIMATION_OVERLOAD, overloaded)
+end
+	
+
 function init(self)	
 	self.traumas = {}
 	self.is_visible = false
+	self.overloading = false
 	
 	label.set_text("#label", "")
 	go.set("#sprite", "tint", vmath.vector4(1,1,1,0))
 end
 
 function update(self, dt)
-	if self.capacity <= 0 then
-		go.delete(".")
+	if self.capacity <= 0 and not self.overloading then
+		print('overloading...')
+		self.overloading = true
+		play_flipbook_overload()
 	end
 end
 
