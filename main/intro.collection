@@ -1,0 +1,14 @@
+name: "intro"
+instances {
+  id: "title"
+  prototype: "/main/title.go"
+  position {
+    x: 620.0
+    y: 900.0
+  }
+}
+instances {
+  id: "background"
+  prototype: "/main/background.go"
+}
+scale_along_z: 0
