@@ -13,7 +13,6 @@ local function is_position_valid(position, existing_objects)
 			return false
 		end
 	end
-
 	return true
 end
 

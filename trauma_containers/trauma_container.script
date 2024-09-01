@@ -12,12 +12,15 @@ local ANIMATION_OVERLOAD = hash("therapist_overload")
 
 local LABEL_CAPACITY = "Cierpliwosc terapeutki: "
 
-
 local function play_flipbook_idle()
 	sprite.play_flipbook("#sprite", ANIMATION_IDLE)
 end
 
 local function play_flipbook_recieving()
+	-- -- Set the position property y component to 200
+	-- go.set(".", "position.y", 200)
+	-- -- Then animate it
+	-- go.animate(".", "position.y", go.PLAYBACK_LOOP_PINGPONG, 100, go.EASING_OUTBOUNCE, 2)
 	sprite.play_flipbook("#sprite", ANIMATION_RECEIVING, play_flipbook_idle)
 end
 
@@ -63,7 +66,7 @@ function on_message(self, message_id, message, sender)
 				table.insert(self.traumas, message.other_id)
 				msg.post(message.other_id, "caught_you") -- , {params?})
 				label.set_text("#label", LABEL_CAPACITY .. self.capacity)
-				play_flipbook_recieving()				
+				play_flipbook_recieving()
 			end
 		end
 

@@ -1,0 +1,22 @@
+images {
+  image: "/assets/obstacles/cheese.png"
+}
+images {
+  image: "/assets/obstacles/grater.png"
+}
+images {
+  image: "/assets/obstacles/plate.png"
+}
+images {
+  image: "/assets/obstacles/roller.png"
+}
+images {
+  image: "/assets/obstacles/splash.png"
+}
+images {
+  image: "/assets/obstacles/spoon.png"
+}
+images {
+  image: "/assets/obstacles/stains.png"
+}
+extrude_borders: 2
