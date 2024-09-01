@@ -128,6 +128,10 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash("get_older") then
 		self.age = self.age + message.age
 		update_animation(self)
+
+		-- można zrobić disable wysyłania get_older albo coś
+		-- bo spawnuje go.delete(): instance could not be resolved
+		-- TODO do przesledzenia
 		if self.age > 100 then
 			msg.post("/trauma_boss", "release_the_kraken")
 			msg.post("/trauma_factory#factory", "release_the_kraken")			

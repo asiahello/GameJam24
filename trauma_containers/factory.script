@@ -46,7 +46,7 @@ function init(self)
 		"/obstacles#grater_factory",
 	}
 	
-	for _, url in ipairs(obstacles_urls) do		
+	for _, url in ipairs(obstacles_urls) do
 		repeat
 			position = random_position()
 		-- TODO why diff behaviours on until ?
