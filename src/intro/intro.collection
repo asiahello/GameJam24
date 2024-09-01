@@ -1,7 +1,7 @@
 name: "intro"
 instances {
   id: "title"
-  prototype: "/main/title.go"
+  prototype: "/src/intro/title.go"
   position {
     x: 620.0
     y: 900.0
@@ -9,6 +9,6 @@ instances {
 }
 instances {
   id: "background"
-  prototype: "/main/background.go"
+  prototype: "/src/intro/background.go"
 }
 scale_along_z: 0
