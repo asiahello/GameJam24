@@ -17,7 +17,7 @@ local function distance_to_player()
 end
 
 local function hard_bounce(self, dt, dir)
-	
+
 	-- Determine the direction of the collision
 	local pos = go.get_position()
 	-- Calculate the bounce direction based on the collision
@@ -55,11 +55,11 @@ local function follow_player_movement(self, dt)
 
 	-- move in current direction
 	local direction = vmath.rotate(rotation, UP)
-	if pos.x <= 64 or pos.x >= 15 * 128 - 64 then 
+	if pos.x <= 64 or pos.x >= 15 * 128 - 64 then
 		direction.x = direction.x * 10
 	end
 	if pos.y <= 64 or pos.y >= 17 * 128 - 64 then
-		direction.y = direction.y * 10 
+		direction.y = direction.y * 10
 	end
 	local distance = self.speed * dt
 	go.set_position(go.get_position() + direction * distance)
@@ -73,7 +73,7 @@ function init(self)
 	self.life = 10
 	self.rotation = 0
 	self.range = 200
-	
+
 	self.follow = true
 	self.caught_by = nil
 	self.offset_caught = vmath.vector3(50,0,0)
@@ -133,7 +133,7 @@ function on_message(self, message_id, message, sender)
 		self.follow = false
 		self.caught_by = sender
 
-		go.animate(".", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 2)		
+		go.animate(".", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 2)
 		self.offset_caught = go.get_position() - go.get_position(self.caught_by)
 
 	elseif message_id == hash("you_are_free") then

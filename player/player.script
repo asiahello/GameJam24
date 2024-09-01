@@ -128,6 +128,13 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash("get_older") then
 		self.age = self.age + message.age
 		update_animation(self)
+		if self.age > 100 then
+			msg.post("/trauma_boss", "release_the_kraken")
+			msg.post("/trauma_factory#factory", "release_the_kraken")			
+			msg.post("/trauma_container#factory", "release_the_kraken")			
+			
+		end
+		
 	elseif message_id == hash("contact_point_response") then
 		if message.group == hash("obstacles") then
 			self.obstacle_collision = true

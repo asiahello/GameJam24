@@ -19,6 +19,7 @@ end
 
 function init(self)
 	math.randomseed(os.time())
+	self.containers = {}
 	local positions = {}
 	local position = nil
 
@@ -27,7 +28,15 @@ function init(self)
 			position = random_position()
 		until i < 1 or is_position_valid(position, positions)
 
-		factory.create("#trauma_container_factory", position, nil, { capacity = 10 * i }, nil)
+		local container = factory.create("#trauma_container_factory", position, nil, { capacity = 10 * i }, nil)
+		table.insert(self.containers, container)
 		table.insert(positions, position)
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("release_the_kraken") then
+		go.delete(self.containers, true)
+		
 	end
 end
