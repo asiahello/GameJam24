@@ -10,40 +10,6 @@ local function angle_to_player()
 	return -math.atan2(target_pos.x - self_pos.x, target_pos.y - self_pos.y)
 end
 
-local function distance_to_player()
-	local self_pos = go.get_position()
-	local target_pos = go.get_position("/player#sprite")
-	return vmath.length(self_pos, target_pos)
-end
-
-local function hard_bounce(self, dt, dir)
-	
-	-- Determine the direction of the collision
-	local pos = go.get_position()
-	-- Calculate the bounce direction based on the collision
-	local bounce_distance = 100
-	local bounce_dir = vmath.vector3(0, 0, 0)
-
-	if dir == hash("x") then
-		-- Horizontal collision: Bounce in the opposite X direction
-		bounce_dir.x = -self.dir.x * bounce_distance
-	else
-		-- Vertical collision: Bounce in the opposite Y direction
-		bounce_dir.y = -self.dir.y * bounce_distance
-	end
-
-	-- Calculate the final position after the bounce
-	local final_pos = pos + bounce_dir
-
-	-- Animate the player to the final position with a bounce effect
-	go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, final_pos, go.EASING_LINEAR, 0.1, 0)
-
-	-- Prevent further movement
-	self.moving = false
-	self.obstacle_collision = false
-
-end
-
 local function follow_player_movement(self, dt)
 	local pos = go.get_position(".")
 	local target_angle = angle_to_player()
@@ -55,11 +21,11 @@ local function follow_player_movement(self, dt)
 
 	-- move in current direction
 	local direction = vmath.rotate(rotation, UP)
-	if pos.x <= 64 or pos.x >= 15 * 128 - 64 then 
-		direction.x = direction.x * 10
+	if pos.x <= 128 or pos.x >= 15 * 128 - 128 then 
+		direction.x = direction.x * 15
 	end
-	if pos.y <= 64 or pos.y >= 17 * 128 - 64 then
-		direction.y = direction.y * 10 
+	if pos.y <= 128 or pos.y >= 17 * 128 - 128 then
+		direction.y = direction.y * 15 
 	end
 	local distance = self.speed * dt
 	go.set_position(go.get_position() + direction * distance)

@@ -21,12 +21,12 @@ function init(self)
 	local positions = {}
 	local position = nil
 
-	for i = 1, 5 do
+	for i = 1, 20 do
 		repeat
 			position = random_position()
 		until i < 1 or is_position_valid(position, positions)
 
-		factory.create("#trauma_container_factory", position, nil, { capacity = 10 * i }, nil)
+		factory.create("#trauma_container_factory", position, nil, { capacity = math.random(3,8) }, nil)
 		table.insert(positions, position)
 	end
 end
