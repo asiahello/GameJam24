@@ -6,7 +6,7 @@
 local DISPLAY_WIDTH = 15 * 128
 local DISPLAY_HEIGHT = 17 * 128
 
-local OFFSET = 64
+local OFFSET = 192
 
 function random_position()
 	local x = math.random(OFFSET, DISPLAY_WIDTH - 2 * OFFSET)
