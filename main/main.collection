@@ -11,14 +11,6 @@ instances {
     y: 2.0
   }
 }
-instances {
-  id: "obstacle"
-  prototype: "/obstacles/obstacle.go"
-  position {
-    x: 876.0
-    y: 905.0
-  }
-}
 scale_along_z: 0
 embedded_instances {
   id: "game"
@@ -110,6 +102,40 @@ embedded_instances {
     x: 692.0
     y: 649.0
   }
+}
+embedded_instances {
+  id: "obstacles"
+  data: "embedded_components {\n"
+  "  id: \"cheese_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/obstacles/cheese.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"plate_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/obstacles/plate.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"grater_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/obstacles/grater.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"spoon_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/obstacles/spoon.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"roller_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/obstacles/roller.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
 }
 embedded_instances {
   id: "trauma_boss"

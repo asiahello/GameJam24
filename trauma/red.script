@@ -55,11 +55,11 @@ local function follow_player_movement(self, dt)
 
 	-- move in current direction
 	local direction = vmath.rotate(rotation, UP)
-	if pos.x <= 64 or pos.x >= 15 * 128 - 64 then
-		direction.x = direction.x * 10
+	if pos.x <= 128 or pos.x >= 15 * 128 - 128 then 
+		direction.x = direction.x * 15
 	end
-	if pos.y <= 64 or pos.y >= 17 * 128 - 64 then
-		direction.y = direction.y * 10
+	if pos.y <= 128 or pos.y >= 17 * 128 - 128 then
+		direction.y = direction.y * 15
 	end
 	local distance = self.speed * dt
 	go.set_position(go.get_position() + direction * distance)
