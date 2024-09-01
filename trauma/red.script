@@ -10,12 +10,6 @@ local function angle_to_player()
 	return -math.atan2(target_pos.x - self_pos.x, target_pos.y - self_pos.y)
 end
 
-local function distance_to_player()
-	local self_pos = go.get_position()
-	local target_pos = go.get_position("/player#sprite")
-	return vmath.length(self_pos, target_pos)
-end
-
 local function follow_player_movement(self, dt)
 	local pos = go.get_position(".")
 	local target_angle = angle_to_player()
