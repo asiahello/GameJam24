@@ -52,7 +52,6 @@ embedded_instances {
   "near_z: 0.1\\n"
   "far_z: 1000.0\\n"
   "orthographic_projection: 1\\n"
-  "orthographic_zoom: 3.0\\n"
   "\"\n"
   "}\n"
   ""
@@ -134,6 +133,20 @@ embedded_instances {
   "  type: \"factory\"\n"
   "  data: \"prototype: \\\"/obstacles/roller.go\\\"\\n"
   "\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "splash_factory"
+  data: "components {\n"
+  "  id: \"factory\"\n"
+  "  component: \"/slowers/factory.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"splash_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/slowers/splash.go\\\"\\n"
+    "\"\n"
   "}\n"
   ""
 }
@@ -270,7 +283,7 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: -541.0
-    y: 935.0
+    x: 692.0
+    y: 649.0
   }
 }
