@@ -1,0 +1,40 @@
+function init(self)
+	self.is_visible = false
+	self.force_multiplier = 500  -- Adjust this to change the strength of the force applied
+	self.max_speed = 200  -- Maximum speed for the boss
+	go.set("#sprite", "tint", vmath.vector4(1,1,1,0))
+
+	-- Store the initial rotation (likely identity quaternion) to reset the rotation each frame
+	self.initial_rotation = go.get_rotation()
+end
+
+function update(self, dt)
+	if self.is_visible then
+		local player_pos = go.get_position("/player")
+		local boss_pos = go.get_position()
+
+		-- Calculate the direction vector from the boss to the player
+		local direction = vmath.normalize(player_pos - boss_pos)
+
+		-- Apply force towards the player
+		local force = direction * self.force_multiplier
+		msg.post("#collisionobject", "apply_force", {force = force, position = boss_pos})
+
+		-- Cap the boss's speed to prevent it from going too fast
+		local velocity = go.get("#collisionobject", "linear_velocity")
+		if vmath.length(velocity) > self.max_speed then
+			velocity = vmath.normalize(velocity) * self.max_speed
+			go.set("#collisionobject", "linear_velocity", velocity)
+		end
+
+		-- Reset the rotation to the initial rotation to prevent visual rotation
+		go.set_rotation(self.initial_rotation)
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("release_the_kraken") and not self.is_visible then
+		self.is_visible = true
+		go.set("#sprite", "tint", vmath.vector4(1,1,1,1))
+	end
+end
