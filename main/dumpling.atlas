@@ -122,4 +122,23 @@ animations {
   playback: PLAYBACK_NONE
   fps: 12
 }
+animations {
+  id: "therapist_overload"
+  images {
+    image: "/assets/dumplings/therapist_overload_1.png"
+  }
+  images {
+    image: "/assets/dumplings/therapist_overload_2.png"
+  }
+  images {
+    image: "/assets/dumplings/therapist_overload_3.png"
+  }
+  images {
+    image: "/assets/dumplings/therapist_overload_4.png"
+  }
+  images {
+    image: "/assets/dumplings/therapist_overload_5.png"
+  }
+  fps: 12
+}
 extrude_borders: 2

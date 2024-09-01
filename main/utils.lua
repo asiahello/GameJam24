@@ -3,8 +3,8 @@
 -- require "my_directory.my_file"
 -- in any script using the functions.
 
-local DISPLAY_WIDTH = 1280
-local DISPLAY_HEIGHT = 720
+local DISPLAY_WIDTH = 15 * 128
+local DISPLAY_HEIGHT = 17 * 128
 
 local OFFSET = 64
 
