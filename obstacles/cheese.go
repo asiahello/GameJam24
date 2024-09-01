@@ -8,6 +8,10 @@ embedded_components {
   "  texture: \"/obstacles/obstacles.atlas\"\n"
   "}\n"
   ""
+  scale {
+    x: 0.5
+    y: 0.5
+  }
 }
 embedded_components {
   id: "collisionobject"
@@ -21,15 +25,17 @@ embedded_components {
   "mask: \"traumas\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
-  "    shape_type: TYPE_SPHERE\n"
+  "    shape_type: TYPE_BOX\n"
   "    position {\n"
   "    }\n"
   "    rotation {\n"
   "    }\n"
   "    index: 0\n"
-  "    count: 1\n"
+  "    count: 3\n"
   "  }\n"
-  "  data: 103.17988\n"
+  "  data: 51.569767\n"
+  "  data: 33.81271\n"
+  "  data: 10.0\n"
   "}\n"
   ""
 }

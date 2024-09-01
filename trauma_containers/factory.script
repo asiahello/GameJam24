@@ -20,13 +20,43 @@ function init(self)
 	math.randomseed(os.time())
 	local positions = {}
 	local position = nil
+	-- self.therapists = {}
 
 	for i = 1, 20 do
 		repeat
 			position = random_position()
-		until i < 1 or is_position_valid(position, positions)
+		until i <= 1 or is_position_valid(position, positions)
 
 		factory.create("#trauma_container_factory", position, nil, { capacity = math.random(3,8) }, nil)
 		table.insert(positions, position)
+		-- table.insert(self.therapists, position)
 	end
+
+	-- SZPACHLA, to powinno byc w jakims obstacles script
+	obstacles_urls = {
+		"/obstacles#cheese_factory", 
+		"/obstacles#cheese_factory", 
+		"/obstacles#plate_factory",
+		"/obstacles#plate_factory",
+		"/obstacles#plate_factory",
+		"/obstacles#spoon_factory",
+		"/obstacles#spoon_factory",
+		"/obstacles#spoon_factory",
+		"/obstacles#roller_factory",
+		"/obstacles#grater_factory",
+	}
+
+	
+	
+	for _, url in ipairs(obstacles_urls) do		
+		repeat
+			position = random_position()
+		-- TODO why diff behaviours on until ?
+		until not is_position_valid(position, positions)
+
+		factory.create(url, position, nil, nil)
+		table.insert(positions, position)
+	end
+
+	
 end

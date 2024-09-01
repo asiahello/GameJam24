@@ -1,13 +1,17 @@
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "default_animation: \"cheese\"\n"
+  data: "default_animation: \"plate\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
   "  texture: \"/obstacles/obstacles.atlas\"\n"
   "}\n"
   ""
+  scale {
+    x: 0.5
+    y: 0.5
+  }
 }
 embedded_components {
   id: "collisionobject"
@@ -21,17 +25,15 @@ embedded_components {
   "mask: \"traumas\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
-  "    shape_type: TYPE_BOX\n"
+  "    shape_type: TYPE_SPHERE\n"
   "    position {\n"
   "    }\n"
   "    rotation {\n"
   "    }\n"
   "    index: 0\n"
-  "    count: 3\n"
+  "    count: 1\n"
   "  }\n"
-  "  data: 101.2223\n"
-  "  data: 65.01205\n"
-  "  data: 10.0\n"
+  "  data: 51.23466\n"
   "}\n"
   ""
 }

@@ -12,10 +12,6 @@ embedded_components {
   "  texture: \"/main/dumpling.atlas\"\n"
   "}\n"
   ""
-  scale {
-    x: 0.5
-    y: 0.5
-  }
 }
 embedded_components {
   id: "collisionobject"
@@ -37,8 +33,8 @@ embedded_components {
   "    index: 0\n"
   "    count: 3\n"
   "  }\n"
-  "  data: 55.25424\n"
-  "  data: 33.46439\n"
+  "  data: 107.95057\n"
+  "  data: 68.33123\n"
   "  data: 0.5\n"
   "}\n"
   ""
@@ -56,6 +52,6 @@ embedded_components {
   "material: \"/builtins/fonts/label-df.material\"\n"
   ""
   position {
-    y: -39.0
+    y: -85.0
   }
 }

@@ -8,6 +8,10 @@ embedded_components {
   "  texture: \"/obstacles/obstacles.atlas\"\n"
   "}\n"
   ""
+  scale {
+    x: 0.5
+    y: 0.5
+  }
 }
 embedded_components {
   id: "collisionobject"
@@ -29,8 +33,8 @@ embedded_components {
   "    index: 0\n"
   "    count: 3\n"
   "  }\n"
-  "  data: 131.93164\n"
-  "  data: 42.869213\n"
+  "  data: 62.49394\n"
+  "  data: 20.090944\n"
   "  data: 10.0\n"
   "}\n"
   ""
