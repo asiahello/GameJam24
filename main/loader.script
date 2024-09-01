@@ -11,6 +11,6 @@ function on_message(self, message_id, message, sender)
 
 	if message_id == hash("start_therapy") then
 		msg.post("#intro_proxy", "unload")
-		msg.post("#terapia_proxy", "load")
+		msg.post("#therapy_proxy", "load")
 	end
 end
