@@ -19,9 +19,6 @@ end
 local function follow_player_movement(self, dt)
 	print("following player")
 	local target_angle = angle_to_player()
-	-- rotate towards the target angle
-	-- spherical interpolation towards the target rotation
-	-- tweak rotation speed to turn faster
 	local current_rotation = go.get_rotation()
 	local target_rotation = vmath.quat_rotation_z(target_angle)
 	local rotation_speed = 4 -- tweak this!
@@ -31,6 +28,7 @@ local function follow_player_movement(self, dt)
 	-- move in current direction
 	local direction = vmath.rotate(rotation, UP)
 	local distance = self.speed * dt
+	go.set_position(go.get_position() + direction * distance)
 	msg.post(".", "apply_force", {force = direction * distance * 100, position = go.get_world_position()})
 end
 
