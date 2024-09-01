@@ -2,6 +2,6 @@ images {
   image: "/assets/title.png"
 }
 images {
-  image: "/assets/background.png"
+  image: "/assets/backgrounds/plain.png"
 }
 extrude_borders: 2
