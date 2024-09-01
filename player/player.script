@@ -3,6 +3,8 @@ local DOWN = hash("key_down")
 local LEFT = hash("key_left")
 local RIGHT = hash("key_right")
 
+require("main.utils")
+
 function init(self)
 	msg.post(".", "acquire_input_focus")
 	msg.post("camera", "follow")
@@ -16,7 +18,7 @@ function init(self)
 
 	self.input = vmath.vector3()
 	self.dir = vmath.vector3(0, 1, 0)
-	self.speed = 150 
+	self.speed = 300
 
 	self.current_animation = nil
 end
@@ -69,6 +71,35 @@ local function handle_collision(self, dt)
 	
 end
 
+local function hard_bounce(self, dt, dir)
+
+	-- Determine the direction of the collision
+	local pos = go.get_position()
+
+	-- Calculate the bounce direction based on the collision
+	local bounce_distance = 100
+	local bounce_dir = vmath.vector3(0, 0, 0)
+
+	if dir == hash("x") then
+		-- Horizontal collision: Bounce in the opposite X direction
+		bounce_dir.x = -self.dir.x * bounce_distance
+	else
+		-- Vertical collision: Bounce in the opposite Y direction
+		bounce_dir.y = -self.dir.y * bounce_distance
+	end
+
+	-- Calculate the final position after the bounce
+	local final_pos = pos + bounce_dir
+
+	-- Animate the player to the final position with a bounce effect
+	go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, final_pos, go.EASING_LINEAR, 0.1, 0, bounced)
+
+	-- Prevent further movement
+	self.moving = false
+	self.obstacle_collision = false
+
+end
+
 
 function update(self, dt)
 	if self.obstacle_collision then
@@ -80,7 +111,12 @@ function update(self, dt)
 		pos = pos + self.dir * self.speed * dt
 		go.set_position(pos)
 	end
-	
+	if pos.x <= 20 or pos.x >= 15 * 128 then 
+		hard_bounce(self, dt, hash("x"))
+	end
+	if pos.y <= 0 or pos.y >= 17 * 128 then
+		hard_bounce(self, dt, hash("y"))
+	end
 	self.input.x = 0
 	self.input.y = 0
 	self.moving = false
